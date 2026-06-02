@@ -34,3 +34,9 @@ export const generateQuiz  = (documentId)          => API.post(`/quiz/generate/$
 export const getQuiz       = (documentId)          => API.get(`/quiz/${documentId}`);
 export const submitQuiz    = (documentId, answers) => API.post(`/quiz/submit/${documentId}`, { answers });
 export const getAttempts   = (documentId)          => API.get(`/quiz/attempts/${documentId}`);
+
+export const getSummaryStats    = ()           => API.get('/progress/stats');
+export const getOverallProgress = ()           => API.get('/progress/overall');
+export const getSubjectProgress = (subjectId) => API.get(`/progress/subject/${subjectId}`);
+export const getWeakTopics      = ()           => API.get('/progress/weak-topics');
+export const getStreak          = ()           => API.get('/progress/streak');

@@ -8,6 +8,9 @@ const subjectRoutes = require('./routes/subjectRoutes');
 const documentRoutes = require('./routes/documentRoutes');
 const flashcardRoutes = require('./routes/flashcardRoutes');
 const quizRoutes      = require('./routes/quizRoutes'); 
+const progressRoutes = require('./routes/progressRoutes');
+
+
 
 const app = express();
 app.use(express.json());
@@ -24,7 +27,8 @@ app.use('/api/auth',authRoutes);
 app.use('/api/subjects',subjectRoutes);
 app.use('/api/documents',documentRoutes);
 app.use('/api/flashcards', flashcardRoutes);
-app.use('/api/quiz',       quizRoutes);  
+app.use('/api/quiz', quizRoutes);  
+app.use('/api/progress', progressRoutes);
 
 app.get('/',(req,res)=>{
     res.json({message : 'AI study budy API is running'});

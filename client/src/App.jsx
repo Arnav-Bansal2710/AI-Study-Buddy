@@ -4,6 +4,15 @@ import Login     from './pages/Login';
 import Register  from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Upload    from './pages/Upload';
+import Flashcards from './pages/Flashcards';
+import Quiz       from './pages/Quiz';
+import Progress from './pages/Progress'; // ✅ add
+import Subjects from './pages/Subjects';
+import Documents from './pages/Documents';
+// Inside Routes add:
+
+// Add inside Routes:
+
 
 const ProtectedRoute = ({ children }) => {
   const { token } = useAuth();
@@ -22,6 +31,26 @@ function AppRoutes() {
         </ProtectedRoute>
       } />
       <Route path="/upload"    element={<ProtectedRoute><Upload /></ProtectedRoute>} />
+      <Route path="/flashcards/:documentId" element={<ProtectedRoute><Flashcards /></ProtectedRoute>} />
+      <Route path="/quiz/:documentId"       element={<ProtectedRoute><Quiz /></ProtectedRoute>} />
+      <Route path="/progress" element={<ProtectedRoute><Progress /></ProtectedRoute>} />
+      <Route
+        path="/subjects"
+        element={
+          <ProtectedRoute>
+            <Subjects />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/subjects/:subjectId"
+        element={
+          <ProtectedRoute>
+            <Documents />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }

@@ -18,14 +18,14 @@ const createFlashcards = async (req,res)=>{
         const rawText = doc[0].raw_text;
 
         const [existing] = await db.query(
-            'SELECT id FROM flashcards WHERE id=? AND user_id = ?',
+            'SELECT id FROM flashcards WHERE document_id=? AND user_id = ?',
             [documentId,userId]
         );
 
         if(existing.length > 0){
             const [cards] = await db.query(
-                'SELECT * FROM flashcards WHERE id=? AND user_id=?',
-                [documentId,userid]
+                'SELECT * FROM flashcards WHERE document_id=? AND user_id=?',
+                [documentId,userId]
             );
             return res.json({message:'Flashcards already generated',flashcards:cards});
         }
@@ -62,7 +62,7 @@ const getFlashcards = async(req,res)=>{
 
     try{
         const [flashcards] = await db.query(
-            'SELECT * FROM flashcards WHERE id=? AND user_id=?',
+            'SELECT * FROM flashcards WHERE document_id=? AND user_id=?',
             [documentId,userId]
         );
 
