@@ -1,15 +1,21 @@
 const multer = require('multer');
 const path = require('path');
 
+const fs = require('fs');
+
+const uploadDir = path.join(__dirname, '..', 'uploads');
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 // Where to save files and what to name them
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // saves to server/uploads/
+    cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
-    // unique name: timestamp + original name
-    // e.g. 1714000000000-notes.pdf
-    const uniqueName = Date.now() + '-' + file.originalname.replace(/\s+/g, '-');
+    const uniqueName =
+      Date.now() + '-' + file.originalname.replace(/\s+/g, '-');
     cb(null, uniqueName);
   }
 });

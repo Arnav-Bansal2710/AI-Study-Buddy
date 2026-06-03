@@ -15,6 +15,7 @@ const uploadDocument = async (req, res) => {
   }
 
   const filePath = req.file.path;
+  console.log('Uploaded file path:', req.file.path);
   const filename = req.file.filename;
 
   try {
@@ -118,7 +119,15 @@ const deleteDocument = async (req, res) => {
     await db.query('DELETE FROM documents WHERE id = ?', [id]);
 
     // Delete file from disk
-    const filePath = `uploads/${docs[0].filename}`;
+    const path = require('path');
+
+    const filePath = path.join(
+      __dirname,
+      '..',
+      'uploads',
+      docs[0].filename
+    );
+
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
     }
