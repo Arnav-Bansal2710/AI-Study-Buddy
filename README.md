@@ -118,7 +118,7 @@ Create a `.env` file inside the server directory.
 ```env
 PORT=5000
 
-MYSQL_HOST=localhost
+MYSQL_HOST=TiDB Cloud
 MYSQL_USER=root
 MYSQL_PASSWORD=your_password
 MYSQL_DATABASE=ai_study_buddy
